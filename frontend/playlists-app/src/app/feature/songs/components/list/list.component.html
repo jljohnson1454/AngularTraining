@@ -1,0 +1,29 @@
+<div *ngIf="(model$ | async)?.loaded">
+
+
+  <div *ngIf="(model$| async) as model">
+
+      <div class="card" *ngFor="let song of model.songs">
+        <div class="card-header">{{song.title}}</div>
+        <div class="card-body">
+          <div class="alert alert-info" *ngIf="song.isTemporary">
+            This song has been sent to the server... waiting
+          </div>
+          <p>Song Title: {{song.title}}</p>
+          <p>Artist: {{song.artist}}</p>
+          <p>Album: {{song.album || "Unknown Album"}}</p>
+        </div>
+      </div>
+      <p>There are {{ model.numberOfSongs }} songs</p>
+      <p>There are {{ model.numberWithAlbums }} have albums</p>
+      <p>There are {{ model.numberWithoutAlbums }} do not have albums</p>
+
+    </div>
+
+
+</div>
+
+
+<div class="alert alert-info" *ngIf="(model$ | async)?.loaded === false">
+  <p>We are loading your songs... chill.</p>
+</div>
